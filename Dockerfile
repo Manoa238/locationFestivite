@@ -1,11 +1,9 @@
 FROM tomcat:10.1-jdk17-temurin
 
-RUN rm -rf /usr/local/tomcat/webapps/*
+RUN rm -rf /usr/local/Tomcat/webapps/*
 
-COPY ROOT.war /usr/local/tomcat/webapps/ROOT.war
+COPY ROOT.war /usr/local/Tomcat/webapps/ROOT.war
 
 EXPOSE 8081
-# Désactive le port shutdown pour éviter les warnings inutiles dans Docker/Render
-RUN sed -i 's/<Server port="8005" shutdown="SHUTDOWN">/<Server port="-1" shutdown="SHUTDOWN">/g' /usr/local/tomcat/conf/server.xml
 
 CMD ["catalina.sh", "run"]
